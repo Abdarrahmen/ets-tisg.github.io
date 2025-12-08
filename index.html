@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ETS TISG - Engineering, Technology & Services | Nouakchott, Mauritanie</title>
+    <meta name="description" content="ETS TISG - Entreprise spécialisée en Engineering, BTP, Télécommunications, Informatique et Services Généraux à Nouakchott, Mauritanie">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-dark: #0d3b66;
+            --primary: #1a5276;
+            --primary-light: #2e86ab;
+            --accent: #e67e22;
+            --accent-light: #f39c12;
+            --white: #ffffff;
+            --gray-light: #f8f9fa;
+            --gray: #6c757d;
+            --gray-dark: #343a40;
+            --shadow: 0 10px 40px rgba(13, 59, 102, 0.1);
+            --shadow-hover: 0 20px 60px rgba(13, 59, 102, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--gray-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.rtl {
+            font-family: 'Cairo', sans-serif;
+            direction: rtl;
+        }
+
+        /* Header */
+        header {
+            background: var(--white);
+            box-shadow: var(--shadow);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo svg {
+            height: 60px;
+            width: auto;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--accent);
+        }
+
+        .lang-switcher {
+            display: flex;
+            gap: 8px;
+        }
+
+        .lang-btn {
+            background: var(--gray-light);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 12px;
+            transition: all 0.3s;
+        }
+
+        .lang-btn:hover, .lang-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 120px 20px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-bottom: 40px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: var(--accent);
+            color: var(--white);
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            box-shadow: 0 5px 20px rgba(230, 126, 34, 0.4);
+        }
+
+        .hero-btn:hover {
+            background: var(--accent-light);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(230, 126, 34, 0.5);
+        }
+
+        /* Stats */
+        .stats {
+            display: flex;
+            justify-content: center;
+            gap: 60px;
+            margin-top: 60px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--accent);
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Section Common */
+        section {
+            padding: 100px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .section-title p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent), var(--accent-light));
+            margin: 20px auto 0;
+            border-radius: 2px;
+        }
+
+        /* Services */
+        .services {
+            background: var(--gray-light);
+        }
+
+        .services-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 40px 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+        }
+
+        .service-icon svg {
+            width: 40px;
+            height: 40px;
+            fill: var(--white);
+        }
+
+        .service-card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+
+        .service-card p {
+            color: var(--gray);
+        }
+
+        /* About / Values */
+        .about {
+            background: var(--white);
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            color: var(--primary-dark);
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .value-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .value-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .value-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: var(--white);
+        }
+
+        .value-item span {
+            font-weight: 500;
+            color: var(--primary-dark);
+        }
+
+        /* Contact */
+        .contact {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: var(--white);
+        }
+
+        .contact .section-title h2,
+        .contact .section-title p {
+            color: var(--white);
+        }
+
+        .contact-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .contact-item {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .contact-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+
+        .contact-icon svg {
+            width: 28px;
+            height: 28px;
+            fill: var(--white);
+        }
+
+        .contact-item h4 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .contact-item p, .contact-item a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            color: var(--accent-light);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gray-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .stats {
+                gap: 30px;
+            }
+
+            .stat-number {
+                font-size: 2.2rem;
+            }
+
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+
+            .values-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-content {
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .service-card {
+            animation: fadeInUp 0.6s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+                    <defs>
+                        <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#1a5276"/>
+                            <stop offset="100%" style="stop-color:#2e86ab"/>
+                        </linearGradient>
+                        <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" style="stop-color:#e67e22"/>
+                            <stop offset="100%" style="stop-color:#f39c12"/>
+                        </linearGradient>
+                    </defs>
+                    <g transform="translate(10, 10)">
+                        <path d="M50 5 L55 0 L60 5 L60 15 L70 15 L75 10 L80 15 L80 25 L90 30 L90 40 L85 45 L90 50 L90 60 L80 65 L80 75 L75 80 L70 75 L60 75 L60 85 L55 90 L50 85 L45 90 L40 85 L40 75 L30 75 L25 80 L20 75 L20 65 L10 60 L10 50 L15 45 L10 40 L10 30 L20 25 L20 15 L25 10 L30 15 L40 15 L40 5 L45 0 Z" fill="url(#techGradient)"/>
+                        <circle cx="50" cy="45" r="25" fill="#ffffff"/>
+                        <rect x="42" y="28" width="16" height="34" fill="url(#techGradient)"/>
+                        <rect x="45" y="32" width="4" height="4" fill="#ffffff"/>
+                        <rect x="51" y="32" width="4" height="4" fill="#ffffff"/>
+                        <rect x="45" y="40" width="4" height="4" fill="#ffffff"/>
+                        <rect x="51" y="40" width="4" height="4" fill="#ffffff"/>
+                        <rect x="45" y="48" width="4" height="4" fill="#ffffff"/>
+                        <rect x="51" y="48" width="4" height="4" fill="#ffffff"/>
+                        <line x1="50" y1="28" x2="50" y2="20" stroke="url(#orangeGradient)" stroke-width="2"/>
+                        <circle cx="50" cy="18" r="3" fill="url(#orangeGradient)"/>
+                    </g>
+                    <text x="115" y="55" font-family="Arial Black, Arial, sans-serif" font-size="38" font-weight="bold" fill="url(#techGradient)">ETS</text>
+                    <text x="115" y="90" font-family="Arial Black, Arial, sans-serif" font-size="38" font-weight="bold" fill="url(#techGradient)">TISG</text>
+                    <rect x="115" y="60" width="100" height="4" fill="url(#orangeGradient)"/>
+                </svg>
+            </div>
+            <nav>
+                <a href="#home" data-fr="Accueil" data-ar="الرئيسية" data-en="Home">Accueil</a>
+                <a href="#services" data-fr="Services" data-ar="الخدمات" data-en="Services">Services</a>
+                <a href="#about" data-fr="À Propos" data-ar="من نحن" data-en="About">À Propos</a>
+                <a href="#contact" data-fr="Contact" data-ar="اتصل بنا" data-en="Contact">Contact</a>
+                <div class="lang-switcher">
+                    <button class="lang-btn active" onclick="setLang('fr')">FR</button>
+                    <button class="lang-btn" onclick="setLang('ar')">عربي</button>
+                    <button class="lang-btn" onclick="setLang('en')">EN</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 data-fr="Solutions d'Ingénierie & Technologie" data-ar="حلول الهندسة والتكنولوجيا" data-en="Engineering & Technology Solutions">Solutions d'Ingénierie & Technologie</h1>
+            <p data-fr="Votre partenaire de confiance en Engineering, BTP, Télécommunications et Services Informatiques depuis 2017" data-ar="شريكك الموثوق في الهندسة والبناء والاتصالات وخدمات تكنولوجيا المعلومات منذ 2017" data-en="Your trusted partner in Engineering, Construction, Telecommunications and IT Services since 2017">Votre partenaire de confiance en Engineering, BTP, Télécommunications et Services Informatiques depuis 2017</p>
+            <a href="#contact" class="hero-btn" data-fr="Contactez-nous" data-ar="اتصل بنا" data-en="Contact Us">Contactez-nous</a>
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-number">8+</div>
+                    <div class="stat-label" data-fr="Années d'Expérience" data-ar="سنوات الخبرة" data-en="Years Experience">Années d'Expérience</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label" data-fr="Projets Réalisés" data-ar="مشاريع منجزة" data-en="Projects Completed">Projets Réalisés</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label" data-fr="Clients Satisfaits" data-ar="عملاء راضون" data-en="Happy Clients">Clients Satisfaits</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="section-title">
+            <h2 data-fr="Nos Services" data-ar="خدماتنا" data-en="Our Services">Nos Services</h2>
+            <p data-fr="Des solutions complètes pour répondre à tous vos besoins" data-ar="حلول شاملة لتلبية جميع احتياجاتكم" data-en="Complete solutions to meet all your needs">Des solutions complètes pour répondre à tous vos besoins</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                </div>
+                <h3 data-fr="Engineering" data-ar="الهندسة" data-en="Engineering">Engineering</h3>
+                <p data-fr="Conception, études techniques et réalisation de projets d'ingénierie complexes" data-ar="تصميم ودراسات تقنية وتنفيذ مشاريع هندسية معقدة" data-en="Design, technical studies and execution of complex engineering projects">Conception, études techniques et réalisation de projets d'ingénierie complexes</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/></svg>
+                </div>
+                <h3 data-fr="BTP" data-ar="البناء والأشغال العمومية" data-en="Construction">BTP</h3>
+                <p data-fr="Bâtiment et Travaux Publics - Construction, rénovation et infrastructure" data-ar="البناء والأشغال العمومية - التشييد والتجديد والبنية التحتية" data-en="Building and Public Works - Construction, renovation and infrastructure">Bâtiment et Travaux Publics - Construction, rénovation et infrastructure</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                </div>
+                <h3 data-fr="Télécommunications" data-ar="الاتصالات" data-en="Telecommunications">Télécommunications</h3>
+                <p data-fr="Installation et maintenance de réseaux de télécommunications" data-ar="تركيب وصيانة شبكات الاتصالات" data-en="Installation and maintenance of telecommunications networks">Installation et maintenance de réseaux de télécommunications</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+                </div>
+                <h3 data-fr="Informatique" data-ar="تكنولوجيا المعلومات" data-en="IT Services">Informatique</h3>
+                <p data-fr="Solutions informatiques, développement logiciel et infrastructure IT" data-ar="حلول تكنولوجيا المعلومات وتطوير البرمجيات والبنية التحتية" data-en="IT solutions, software development and IT infrastructure">Solutions informatiques, développement logiciel et infrastructure IT</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+                </div>
+                <h3 data-fr="Prestation de Services" data-ar="خدمات متنوعة" data-en="General Services">Prestation de Services</h3>
+                <p data-fr="Services généraux et prestations sur mesure pour entreprises" data-ar="خدمات عامة وحلول مخصصة للشركات" data-en="General services and customized solutions for businesses">Services généraux et prestations sur mesure pour entreprises</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="section-title">
+            <h2 data-fr="À Propos de Nous" data-ar="من نحن" data-en="About Us">À Propos de Nous</h2>
+            <p data-fr="Excellence et engagement depuis 2017" data-ar="التميز والالتزام منذ 2017" data-en="Excellence and commitment since 2017">Excellence et engagement depuis 2017</p>
+        </div>
+        <div class="about-container">
+            <div class="about-text">
+                <h3 data-fr="Notre Mission" data-ar="مهمتنا" data-en="Our Mission">Notre Mission</h3>
+                <p data-fr="Depuis 2017, ETS TISG s'engage à fournir des solutions innovantes et de haute qualité dans les domaines de l'ingénierie, du BTP, des télécommunications et de l'informatique. Nous accompagnons nos clients dans la réalisation de leurs projets les plus ambitieux en Mauritanie et dans la région." data-ar="منذ عام 2017، تلتزم ETS TISG بتقديم حلول مبتكرة وعالية الجودة في مجالات الهندسة والبناء والأشغال العمومية والاتصالات وتكنولوجيا المعلومات. نرافق عملاءنا في تحقيق مشاريعهم الأكثر طموحًا في موريتانيا والمنطقة." data-en="Since 2017, ETS TISG is committed to providing innovative and high-quality solutions in engineering, construction, telecommunications and IT. We support our clients in achieving their most ambitious projects in Mauritania and the region.">Depuis 2017, ETS TISG s'engage à fournir des solutions innovantes et de haute qualité dans les domaines de l'ingénierie, du BTP, des télécommunications et de l'informatique. Nous accompagnons nos clients dans la réalisation de leurs projets les plus ambitieux en Mauritanie et dans la région.</p>
+                <h3 data-fr="Nos Valeurs" data-ar="قيمنا" data-en="Our Values">Nos Valeurs</h3>
+                <div class="values-grid">
+                    <div class="value-item">
+                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                        <span data-fr="Qualité" data-ar="الجودة" data-en="Quality">Qualité</span>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                        <span data-fr="Innovation" data-ar="الابتكار" data-en="Innovation">Innovation</span>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                        <span data-fr="Intégrité" data-ar="النزاهة" data-en="Integrity">Intégrité</span>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                        <span data-fr="Fiabilité" data-ar="الموثوقية" data-en="Reliability">Fiabilité</span>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                        <span data-fr="Satisfaction Client" data-ar="رضا العملاء" data-en="Customer Satisfaction">Satisfaction Client</span>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
+                        <span data-fr="Professionnalisme" data-ar="الاحترافية" data-en="Professionalism">Professionnalisme</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-image">
+                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                    <rect fill="#f8f9fa" width="400" height="400" rx="20"/>
+                    <g transform="translate(50, 50)">
+                        <rect x="50" y="100" width="200" height="180" fill="#1a5276" rx="5"/>
+                        <rect x="70" y="120" width="40" height="40" fill="#ffffff" rx="3"/>
+                        <rect x="130" y="120" width="40" height="40" fill="#ffffff" rx="3"/>
+                        <rect x="190" y="120" width="40" height="40" fill="#ffffff" rx="3"/>
+                        <rect x="70" y="180" width="40" height="40" fill="#ffffff" rx="3"/>
+                        <rect x="130" y="180" width="40" height="40" fill="#ffffff" rx="3"/>
+                        <rect x="190" y="180" width="40" height="40" fill="#ffffff" rx="3"/>
+                        <rect x="120" y="240" width="60" height="40" fill="#e67e22" rx="3"/>
+                        <polygon points="150,20 50,100 250,100" fill="#2e86ab"/>
+                        <rect x="140" y="40" width="20" height="40" fill="#e67e22"/>
+                        <circle cx="150" cy="35" r="8" fill="#f39c12"/>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="section-title">
+            <h2 data-fr="Contactez-Nous" data-ar="اتصل بنا" data-en="Contact Us">Contactez-Nous</h2>
+            <p data-fr="Nous sommes à votre écoute pour tous vos projets" data-ar="نحن في خدمتكم لجميع مشاريعكم" data-en="We are here for all your projects">Nous sommes à votre écoute pour tous vos projets</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                </div>
+                <h4 data-fr="Adresse" data-ar="العنوان" data-en="Address">Adresse</h4>
+                <p>Ilot C, Nouakchott<br>Mauritanie</p>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+                </div>
+                <h4 data-fr="Téléphone" data-ar="الهاتف" data-en="Phone">Téléphone</h4>
+                <a href="tel:+22234384800">+222 34 38 48 00</a>
+            </div>
+            <div class="contact-item">
+                <div class="contact-icon">
+                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                </div>
+                <h4>Email</h4>
+                <a href="mailto:contact@ets-tisg.com">contact@ets-tisg.com</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2017 - 2025 ETS TISG. <span data-fr="Tous droits réservés." data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">Tous droits réservés.</span></p>
+    </footer>
+
+    <!-- Language Switcher Script -->
+    <script>
+        function setLang(lang) {
+            // Update body direction for Arabic
+            document.body.classList.toggle('rtl', lang === 'ar');
+            document.documentElement.lang = lang === 'ar' ? 'ar' : lang === 'en' ? 'en' : 'fr';
+
+            // Update all translatable elements
+            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+                el.textContent = el.getAttribute('data-' + lang);
+            });
+
+            // Update active button
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            event.target.classList.add('active');
+        }
+
+        // Smooth scroll for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
