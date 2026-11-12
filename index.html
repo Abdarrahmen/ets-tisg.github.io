@@ -1,711 +1,635 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" dir="ltr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ETS TISG - Engineering, Technology & Services | Nouakchott, Mauritanie</title>
     <meta name="description" content="ETS TISG - Entreprise spécialisée en Engineering, BTP, Télécommunications, Informatique et Services Généraux à Nouakchott, Mauritanie">
+    <meta name="theme-color" content="#0d2a47">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="ETS TISG - Engineering, Technology & Services">
+    <meta property="og:description" content="Engineering, BTP, Télécommunications, Informatique et Services Généraux à Nouakchott, Mauritanie">
+    <meta property="og:url" content="https://ets-tisg.com/">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230d2a47'/%3E%3Crect x='9' y='22' width='14' height='2.5' fill='%23e07a1f'/%3E%3Ctext x='16' y='19' text-anchor='middle' font-family='Arial' font-weight='700' font-size='11' fill='%23fff'%3ETISG%3C/text%3E%3C/svg%3E">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Cairo:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=Noto+Kufi+Arabic:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary-dark: #0d3b66;
-            --primary: #1a5276;
-            --primary-light: #2e86ab;
-            --accent: #e67e22;
-            --accent-light: #f39c12;
+            --ink: #0b2540;          /* navy, from the logo */
+            --ink-2: #163a5f;
+            --ink-soft: #46586b;
+            --muted: #6a7887;
+            --paper: #ffffff;        /* pure white */
+            --paper-2: #f0f3f6;      /* cool steel grey */
             --white: #ffffff;
-            --gray-light: #f8f9fa;
-            --gray: #6c757d;
-            --gray-dark: #343a40;
-            --shadow: 0 10px 40px rgba(13, 59, 102, 0.1);
-            --shadow-hover: 0 20px 60px rgba(13, 59, 102, 0.15);
+            --line: rgba(11, 37, 64, 0.12);
+            --line-strong: rgba(11, 37, 64, 0.24);
+            --accent: #e8771a;       /* orange, from the logo */
+            --accent-ink: #c25e0c;
+            --night: #0b2540;
+            --night-line: rgba(255, 255, 255, 0.14);
+            --max: 1200px;
+            --gutter: clamp(16px, 4vw, 40px);
+            --font: 'Archivo', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            --font-ar: 'Noto Kufi Arabic', 'Archivo', system-ui, sans-serif;
+            --mono: var(--font);
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            color: var(--gray-dark);
+            font-family: var(--font);
+            color: var(--ink);
+            background: var(--paper);
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
             overflow-x: hidden;
         }
 
-        body.rtl {
-            font-family: 'Cairo', sans-serif;
-            direction: rtl;
-        }
+        html[dir="rtl"] body { font-family: var(--font-ar); }
 
-        /* Header */
+        a { color: inherit; }
+
+        :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+        .skip-link {
+            position: absolute; inset-inline-start: 16px; top: -60px;
+            background: var(--ink); color: var(--white); padding: 10px 16px;
+            border-radius: 4px; z-index: 30; text-decoration: none; font-weight: 600;
+        }
+        .skip-link:focus { top: 12px; }
+
+        .wrap { max-width: var(--max); margin: 0 auto; padding: 0 var(--gutter); }
+
+        /* ── Header ─────────────────────────────────────────── */
         header {
-            background: var(--white);
-            box-shadow: var(--shadow);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
+            position: sticky; top: 0; z-index: 20;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: saturate(140%) blur(10px);
+            -webkit-backdrop-filter: saturate(140%) blur(10px);
+            border-bottom: 1px solid var(--line);
         }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 15px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        .header-row {
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 24px; min-height: 72px;
         }
 
-        .logo svg {
-            height: 60px;
-            width: auto;
-        }
+        .logo { display: block; line-height: 0; }
+        .logo svg { height: 46px; width: auto; direction: ltr; unicode-bidi: isolate; }
 
-        nav {
-            display: flex;
-            align-items: center;
-            gap: 30px;
-        }
+        .nav { display: flex; align-items: center; gap: 32px; }
 
-        nav a {
-            text-decoration: none;
-            color: var(--primary-dark);
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+        .nav-links { display: flex; gap: 28px; list-style: none; }
 
-        nav a:hover {
-            color: var(--accent);
+        .nav-links a {
+            text-decoration: none; font-weight: 500; font-size: 0.95rem;
+            color: var(--ink-soft); padding: 6px 0; position: relative;
+            transition: color 0.2s ease;
         }
+        .nav-links a::after {
+            content: ''; position: absolute; inset-inline: 0; bottom: 0; height: 2px;
+            background: var(--accent); transform: scaleX(0); transform-origin: left;
+            transition: transform 0.25s ease;
+        }
+        html[dir="rtl"] .nav-links a::after { transform-origin: right; }
+        .nav-links a:hover, .nav-links a.is-active { color: var(--ink); }
+        .nav-links a:hover::after, .nav-links a.is-active::after { transform: scaleX(1); }
 
         .lang-switcher {
-            display: flex;
-            gap: 8px;
+            display: flex; border: 1px solid var(--line-strong); border-radius: 6px; overflow: hidden;
         }
-
         .lang-btn {
-            background: var(--gray-light);
-            border: none;
-            padding: 8px 12px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 12px;
-            transition: all 0.3s;
+            background: transparent; border: 0; padding: 7px 11px; cursor: pointer;
+            font: 600 12px/1 var(--font); color: var(--ink-soft); letter-spacing: 0.04em;
+            transition: background 0.2s ease, color 0.2s ease;
         }
+        .lang-btn + .lang-btn { border-inline-start: 1px solid var(--line-strong); }
+        .lang-btn[lang="ar"] { font-family: var(--font-ar); letter-spacing: 0; font-size: 13px; }
+        .lang-btn:hover { color: var(--ink); background: var(--paper-2); }
+        .lang-btn.active { background: var(--ink); color: var(--white); }
 
-        .lang-btn:hover, .lang-btn.active {
-            background: var(--primary);
-            color: var(--white);
-        }
-
-        /* Hero Section */
+        /* ── Hero ───────────────────────────────────────────── */
         .hero {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary-light) 100%);
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: var(--white);
-            padding: 120px 20px 80px;
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden; color: var(--white);
+            background:
+                radial-gradient(ellipse 60% 80% at 85% 20%, rgba(46, 134, 171, 0.28), transparent 70%),
+                linear-gradient(160deg, #0b2540 0%, #0a1f36 100%);
+            padding: clamp(80px, 12vw, 150px) 0 clamp(56px, 8vw, 96px);
         }
-
+        /* Technical grid in white lines, strongest on the right */
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            content: ''; position: absolute; inset: 0; pointer-events: none;
+            background-image:
+                linear-gradient(rgba(255,255,255,0.10) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.10) 1px, transparent 1px),
+                linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+            background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+            -webkit-mask-image: linear-gradient(100deg, transparent 15%, #000 75%);
+                    mask-image: linear-gradient(100deg, transparent 15%, #000 75%);
+        }
+        html[dir="rtl"] .hero::before {
+            -webkit-mask-image: linear-gradient(260deg, transparent 15%, #000 75%);
+                    mask-image: linear-gradient(260deg, transparent 15%, #000 75%);
+        }
+        /* Orange structural bar along the bottom edge */
+        .hero::after {
+            content: ''; position: absolute; inset-inline-start: 0; bottom: 0;
+            width: min(38%, 460px); height: 6px; background: var(--accent);
         }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
+        .hero .wrap { position: relative; }
+
+        .eyebrow {
+            display: inline-flex; align-items: center; gap: 10px;
+            font: 700 0.78rem/1 var(--font); letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--accent); margin-bottom: 28px;
         }
+        .eyebrow::before { content: ''; width: 28px; height: 3px; background: var(--accent); }
+        html[dir="rtl"] .eyebrow { font-family: var(--font-ar); letter-spacing: 0; text-transform: none; font-size: 0.9rem; }
 
         .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            font-size: clamp(2.5rem, 6.4vw, 5rem);
+            line-height: 1.02; font-weight: 800; letter-spacing: -0.03em;
+            max-width: 14ch; text-wrap: balance; text-transform: none;
+        }
+        html[dir="rtl"] .hero h1 { letter-spacing: 0; line-height: 1.35; max-width: 16ch; font-weight: 700; }
+
+        .hero-lead {
+            margin-top: 28px; max-width: 58ch;
+            font-size: clamp(1.05rem, 1.6vw, 1.25rem); color: rgba(255,255,255,0.78); text-wrap: pretty;
         }
 
-        .hero p {
-            font-size: 1.3rem;
-            opacity: 0.95;
-            margin-bottom: 40px;
-        }
+        .hero-actions { margin-top: 40px; display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
 
-        .hero-btn {
-            display: inline-block;
-            background: var(--accent);
-            color: var(--white);
-            padding: 15px 40px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            box-shadow: 0 5px 20px rgba(230, 126, 34, 0.4);
+        .btn {
+            display: inline-flex; align-items: center; gap: 12px;
+            background: var(--accent); color: var(--white); text-decoration: none;
+            padding: 16px 28px; border-radius: 4px; font-weight: 700; font-size: 1rem; letter-spacing: 0.01em;
+            box-shadow: 0 10px 28px -10px rgba(232, 119, 26, 0.65);
+            transition: background 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
         }
+        .btn .arrow { transition: transform 0.2s ease; }
+        html[dir="rtl"] .btn .arrow { transform: scaleX(-1); }
+        .btn:hover { background: #f08a33; box-shadow: 0 14px 32px -10px rgba(232, 119, 26, 0.75); }
+        .btn:hover .arrow { transform: translateX(3px); }
+        html[dir="rtl"] .btn:hover .arrow { transform: scaleX(-1) translateX(3px); }
+        .btn:active { transform: translateY(1px); }
 
-        .hero-btn:hover {
-            background: var(--accent-light);
-            transform: translateY(-3px);
-            box-shadow: 0 8px 30px rgba(230, 126, 34, 0.5);
+        .hero-phone {
+            font-weight: 600; color: var(--white); text-decoration: none;
+            border-bottom: 1px solid rgba(255,255,255,0.35); padding-bottom: 2px;
+            transition: color 0.2s ease, border-color 0.2s ease;
+            unicode-bidi: isolate; direction: ltr;
         }
+        .hero-phone:hover { border-color: var(--accent); }
 
-        /* Stats */
+        .hero .stat-item + .stat-item { border-inline-start-color: rgba(255,255,255,0.14); }
+        .hero .stat-label { color: rgba(255,255,255,0.65); }
+
         .stats {
-            display: flex;
-            justify-content: center;
-            gap: 60px;
-            margin-top: 60px;
-            flex-wrap: wrap;
+            margin-top: clamp(56px, 8vw, 88px);
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(255,255,255,0.22);
         }
-
-        .stat-item {
-            text-align: center;
-        }
-
+        .stat-item { padding: 24px 24px 0 0; }
+        .stat-item + .stat-item { border-inline-start: 1px solid var(--line); padding-inline-start: 24px; }
+        html[dir="rtl"] .stat-item { padding: 24px 0 0 24px; }
+        html[dir="rtl"] .stat-item + .stat-item { padding-inline-start: 24px; }
         .stat-number {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--accent);
+            font-size: clamp(2.2rem, 4.5vw, 3.4rem); font-weight: 600; line-height: 1;
+            letter-spacing: -0.02em; font-variant-numeric: tabular-nums; direction: ltr; display: inline-block;
         }
+        .stat-number::after { content: ''; display: block; width: 24px; height: 2px; background: var(--accent); margin-top: 14px; }
+        .stat-label { margin-top: 12px; font-size: 0.95rem; color: var(--muted); }
 
-        .stat-label {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
+        /* ── Sections ───────────────────────────────────────── */
+        section.block { padding: clamp(72px, 10vw, 120px) 0 clamp(80px, 11vw, 132px); }
 
-        /* Section Common */
-        section {
-            padding: 100px 20px;
+        .section-head {
+            display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+            gap: 24px 48px; align-items: end; margin-bottom: clamp(40px, 6vw, 64px);
         }
+        .section-index {
+            grid-column: 1 / -1; font: 700 0.75rem/1 var(--mono); letter-spacing: 0.12em;
+            color: var(--accent-ink); display: flex; align-items: center; gap: 12px;
+        }
+        .section-index::after { content: ''; flex: 1; height: 1px; background: var(--line-strong); }
+        .section-head h2 {
+            font-size: clamp(1.9rem, 3.6vw, 2.8rem); font-weight: 600; line-height: 1.1; letter-spacing: -0.02em;
+        }
+        html[dir="rtl"] .section-head h2 { letter-spacing: 0; line-height: 1.3; }
+        .section-head p { color: var(--ink-soft); font-size: 1.08rem; max-width: 52ch; }
 
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-title h2 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-        }
-
-        .section-title p {
-            color: var(--gray);
-            font-size: 1.1rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--accent), var(--accent-light));
-            margin: 20px auto 0;
-            border-radius: 2px;
-        }
-
-        /* Services */
-        .services {
-            background: var(--gray-light);
-        }
+        /* Services: numbered register, hairline grid */
+        .services { background: var(--paper-2); }
+        .service { background: var(--white); }
+        .section-head h2 { font-weight: 800 !important; letter-spacing: -0.025em; }
+        html[dir="rtl"] .section-head h2 { font-weight: 700 !important; letter-spacing: 0; }
+        .service h3 { font-weight: 700 !important; }
 
         .services-grid {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            display: grid; grid-template-columns: repeat(6, 1fr);
+            border-top: 1px solid var(--line-strong); border-inline-start: 1px solid var(--line);
+            list-style: none;
         }
-
-        .service-card {
-            background: var(--white);
-            padding: 40px 30px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
+        .service {
+            grid-column: span 2; position: relative;
+            padding: 32px 28px 40px; border-inline-end: 1px solid var(--line); border-bottom: 1px solid var(--line);
+            transition: background 0.25s ease;
         }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-hover);
+        /* 3 + 2 layout: the last two share the second row */
+        .service:nth-child(4), .service:nth-child(5) { grid-column: span 3; }
+        .service::before {
+            content: ''; position: absolute; top: -1px; inset-inline-start: -1px; width: 0; height: 2px;
+            background: var(--accent); transition: width 0.35s ease;
         }
+        .service:hover { background: #fbfcfd; }
+        .service:hover::before { width: calc(100% + 1px); }
 
-        .service-icon {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-light));
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 25px;
+        .service-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 40px; }
+        .service-num { font: 500 0.85rem/1 var(--mono); color: var(--accent-ink); letter-spacing: 0.06em; }
+        .service-icon { width: 28px; height: 28px; color: var(--ink-soft); }
+        .service-icon svg { width: 100%; height: 100%; fill: none; stroke: currentColor; stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+
+        .service h3 { font-size: 1.3rem; font-weight: 600; letter-spacing: -0.01em; margin-bottom: 10px; }
+        html[dir="rtl"] .service h3 { letter-spacing: 0; }
+        .service p { color: var(--ink-soft); max-width: 42ch; }
+
+        /* About */
+        .about-grid {
+            display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 88px);
         }
-
-        .service-icon svg {
-            width: 40px;
-            height: 40px;
-            fill: var(--white);
+        .about-grid h3 {
+            font: 700 0.75rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 20px;
         }
-
-        .service-card h3 {
-            color: var(--primary-dark);
-            margin-bottom: 15px;
-            font-size: 1.4rem;
+        html[dir="rtl"] .about-grid h3 { font-family: var(--font-ar); letter-spacing: 0; font-size: 0.95rem; }
+        .mission {
+            font-size: clamp(1.2rem, 2vw, 1.5rem); line-height: 1.55; color: var(--ink);
+            font-weight: 400; max-width: 40ch; text-wrap: pretty;
         }
-
-        .service-card p {
-            color: var(--gray);
+        html[dir="rtl"] .mission { line-height: 1.8; }
+        .since {
+            margin-top: 36px; display: inline-flex; align-items: baseline; gap: 14px;
+            padding-top: 20px; border-top: 2px solid var(--accent);
         }
+        .since-year { font-size: 2.6rem; font-weight: 600; letter-spacing: -0.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+        .since-label { color: var(--muted); font-size: 0.95rem; }
 
-        /* About / Values */
-        .about {
-            background: var(--white);
-        }
-
-        .about-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-        }
-
-        .about-text h3 {
-            color: var(--primary-dark);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        .about-text p {
-            color: var(--gray);
-            margin-bottom: 20px;
-        }
-
-        .values-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
+        .values { list-style: none; border-top: 1px solid var(--line-strong); }
         .value-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
+            display: flex; align-items: center; gap: 16px;
+            padding: 18px 0; border-bottom: 1px solid var(--line);
         }
+        .value-num { font: 500 0.8rem/1 var(--mono); color: var(--muted); width: 26px; flex-shrink: 0; }
+        .value-item span:last-child { font-weight: 500; font-size: 1.08rem; }
+        .value-item::after {
+            content: ''; margin-inline-start: auto; width: 8px; height: 8px; background: var(--accent);
+            opacity: 0; transform: scale(0.4); transition: opacity 0.2s ease, transform 0.2s ease;
+        }
+        .value-item:hover::after { opacity: 1; transform: scale(1); }
 
-        .value-icon {
-            width: 40px;
-            height: 40px;
-            background: linear-gradient(135deg, var(--accent), var(--accent-light));
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-shrink: 0;
-        }
+        /* ── Contact + footer (one dark closing block) ─────── */
+        .closing { background: var(--night); color: var(--white); }
 
-        .value-icon svg {
-            width: 20px;
-            height: 20px;
-            fill: var(--white);
-        }
-
-        .value-item span {
-            font-weight: 500;
-            color: var(--primary-dark);
-        }
-
-        /* Contact */
-        .contact {
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: var(--white);
-        }
-
-        .contact .section-title h2,
-        .contact .section-title p {
-            color: var(--white);
-        }
+        .contact { padding: clamp(72px, 10vw, 120px) 0 clamp(64px, 8vw, 96px); }
+        .contact .section-index { color: var(--accent); }
+        .contact .section-index::after { background: var(--night-line); }
+        .contact .section-head p { color: rgba(255,255,255,0.72); }
 
         .contact-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 40px;
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--night-line);
         }
-
-        .contact-item {
-            text-align: center;
-            padding: 30px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .contact-icon {
-            width: 60px;
-            height: 60px;
-            background: var(--accent);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-        }
-
-        .contact-icon svg {
-            width: 28px;
-            height: 28px;
-            fill: var(--white);
-        }
-
+        .contact-item { padding: 28px 28px 8px 0; }
+        .contact-item + .contact-item { border-inline-start: 1px solid var(--night-line); padding-inline-start: 28px; }
+        html[dir="rtl"] .contact-item { padding: 28px 0 8px 28px; }
+        html[dir="rtl"] .contact-item + .contact-item { padding-inline-start: 28px; }
         .contact-item h4 {
-            margin-bottom: 10px;
-            font-size: 1.2rem;
+            font: 700 0.75rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase;
+            color: rgba(255,255,255,0.55); margin-bottom: 16px; font-weight: 500;
         }
-
+        html[dir="rtl"] .contact-item h4 { font-family: var(--font-ar); letter-spacing: 0; font-size: 0.9rem; }
         .contact-item p, .contact-item a {
-            color: rgba(255,255,255,0.9);
-            text-decoration: none;
+            font-size: clamp(1.15rem, 2vw, 1.5rem); font-weight: 500; line-height: 1.4;
+            color: var(--white); text-decoration: none;
+        }
+        .contact-item a {
+            display: inline-block; border-bottom: 1px solid rgba(255,255,255,0.25); padding-bottom: 2px;
+            transition: border-color 0.2s ease, color 0.2s ease; direction: ltr; unicode-bidi: isolate;
+            overflow-wrap: anywhere;
+        }
+        .contact-item a:hover { border-color: var(--accent); color: #ffd9b5; }
+
+        footer { border-top: 1px solid var(--night-line); padding: 28px 0 36px; }
+        .footer-row {
+            display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px;
+            font-size: 0.9rem; color: rgba(255,255,255,0.6);
+        }
+        .footer-links { display: flex; flex-wrap: wrap; gap: 8px 24px; list-style: none; }
+        .footer-links a { text-decoration: none; transition: color 0.2s ease; }
+        .footer-links a:hover { color: var(--white); }
+
+        /* ── Entry motion (only when JS is on and motion is welcome) */
+        .js .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s cubic-bezier(.2,.7,.2,1); }
+        .js .reveal.in { opacity: 1; transform: none; }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; }
+            .js .reveal { opacity: 1; transform: none; }
         }
 
-        .contact-item a:hover {
-            color: var(--accent-light);
+        /* ── Responsive ─────────────────────────────────────── */
+        @media (max-width: 900px) {
+            .section-head { grid-template-columns: 1fr; align-items: start; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .service, .service:nth-child(4), .service:nth-child(5) { grid-column: span 1; }
+            .service:nth-child(5) { grid-column: 1 / -1; }
+            .about-grid { grid-template-columns: 1fr; }
         }
 
-        /* Footer */
-        footer {
-            background: var(--gray-dark);
-            color: var(--white);
-            text-align: center;
-            padding: 30px 20px;
-        }
-
-        footer p {
-            opacity: 0.8;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .header-container {
-                flex-direction: column;
-                gap: 15px;
+        @media (max-width: 760px) {
+            html { scroll-padding-top: 116px; }
+            .header-row { flex-wrap: wrap; gap: 0 16px; min-height: 0; padding: 12px 0 0; }
+            .logo svg { height: 38px; }
+            .nav { display: contents; }
+            .lang-switcher { order: 2; }
+            .nav-links {
+                order: 3; width: 100%; gap: 22px; overflow-x: auto; scrollbar-width: none;
+                padding: 10px 0 8px; margin-top: 8px;
             }
+            .nav-links::-webkit-scrollbar { display: none; }
+            .nav-links a { white-space: nowrap; }
 
-            nav {
-                flex-wrap: wrap;
-                justify-content: center;
-            }
+            .stats { grid-template-columns: 1fr; }
+            .stat-item, html[dir="rtl"] .stat-item { padding: 20px 0; display: flex; align-items: baseline; gap: 16px; }
+            .stat-item + .stat-item { border-inline-start: 0; border-top: 1px solid var(--line); padding-inline-start: 0; }
+            .hero .stat-item + .stat-item { border-top-color: rgba(255,255,255,0.14); }
+            .stat-number::after { display: none; }
+            .stat-label { margin-top: 0; }
 
-            .hero h1 {
-                font-size: 2.2rem;
-            }
+            .services-grid { grid-template-columns: 1fr; }
+            .service, .service:nth-child(4), .service:nth-child(5) { grid-column: 1 / -1; padding: 26px 20px 30px; }
+            .service-top { margin-bottom: 24px; }
 
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .stats {
-                gap: 30px;
-            }
-
-            .stat-number {
-                font-size: 2.2rem;
-            }
-
-            .about-container {
-                grid-template-columns: 1fr;
-            }
-
-            .values-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .hero-content {
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .service-card {
-            animation: fadeInUp 0.6s ease-out;
+            .contact-grid { grid-template-columns: 1fr; }
+            .contact-item, html[dir="rtl"] .contact-item { padding: 22px 0; }
+            .contact-item + .contact-item { border-inline-start: 0; border-top: 1px solid var(--night-line); padding-inline-start: 0; }
         }
     </style>
 </head>
 <body>
-    <!-- Header -->
+    <a class="skip-link" href="#main" data-fr="Aller au contenu" data-ar="انتقل إلى المحتوى" data-en="Skip to content">Aller au contenu</a>
+
     <header>
-        <div class="header-container">
-            <div class="logo">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 120">
+        <div class="wrap header-row">
+            <a class="logo" href="#home" aria-label="ETS TISG">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 230 110" role="img" aria-hidden="true">
                     <defs>
-                        <linearGradient id="techGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#1a5276"/>
-                            <stop offset="100%" style="stop-color:#2e86ab"/>
-                        </linearGradient>
-                        <linearGradient id="orangeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#e67e22"/>
-                            <stop offset="100%" style="stop-color:#f39c12"/>
+                        <linearGradient id="logoInk" x1="0%" y1="0%" x2="100%" y2="100%">
+                            <stop offset="0%" stop-color="#0d2a47"/>
+                            <stop offset="100%" stop-color="#1a5276"/>
                         </linearGradient>
                     </defs>
                     <g transform="translate(10, 10)">
-                        <path d="M50 5 L55 0 L60 5 L60 15 L70 15 L75 10 L80 15 L80 25 L90 30 L90 40 L85 45 L90 50 L90 60 L80 65 L80 75 L75 80 L70 75 L60 75 L60 85 L55 90 L50 85 L45 90 L40 85 L40 75 L30 75 L25 80 L20 75 L20 65 L10 60 L10 50 L15 45 L10 40 L10 30 L20 25 L20 15 L25 10 L30 15 L40 15 L40 5 L45 0 Z" fill="url(#techGradient)"/>
+                        <path d="M50 5 L55 0 L60 5 L60 15 L70 15 L75 10 L80 15 L80 25 L90 30 L90 40 L85 45 L90 50 L90 60 L80 65 L80 75 L75 80 L70 75 L60 75 L60 85 L55 90 L50 85 L45 90 L40 85 L40 75 L30 75 L25 80 L20 75 L20 65 L10 60 L10 50 L15 45 L10 40 L10 30 L20 25 L20 15 L25 10 L30 15 L40 15 L40 5 L45 0 Z" fill="url(#logoInk)"/>
                         <circle cx="50" cy="45" r="25" fill="#ffffff"/>
-                        <rect x="42" y="28" width="16" height="34" fill="url(#techGradient)"/>
+                        <rect x="42" y="28" width="16" height="34" fill="url(#logoInk)"/>
                         <rect x="45" y="32" width="4" height="4" fill="#ffffff"/>
                         <rect x="51" y="32" width="4" height="4" fill="#ffffff"/>
                         <rect x="45" y="40" width="4" height="4" fill="#ffffff"/>
                         <rect x="51" y="40" width="4" height="4" fill="#ffffff"/>
                         <rect x="45" y="48" width="4" height="4" fill="#ffffff"/>
                         <rect x="51" y="48" width="4" height="4" fill="#ffffff"/>
-                        <line x1="50" y1="28" x2="50" y2="20" stroke="url(#orangeGradient)" stroke-width="2"/>
-                        <circle cx="50" cy="18" r="3" fill="url(#orangeGradient)"/>
+                        <line x1="50" y1="28" x2="50" y2="20" stroke="#e07a1f" stroke-width="2"/>
+                        <circle cx="50" cy="18" r="3" fill="#e07a1f"/>
                     </g>
-                    <text x="115" y="55" font-family="Arial Black, Arial, sans-serif" font-size="38" font-weight="bold" fill="url(#techGradient)">ETS</text>
-                    <text x="115" y="90" font-family="Arial Black, Arial, sans-serif" font-size="38" font-weight="bold" fill="url(#techGradient)">TISG</text>
-                    <rect x="115" y="60" width="100" height="4" fill="url(#orangeGradient)"/>
+                    <text x="115" y="52" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="36" font-weight="700" fill="url(#logoInk)">ETS</text>
+                    <text x="115" y="92" font-family="'IBM Plex Sans', Arial, sans-serif" font-size="36" font-weight="700" fill="url(#logoInk)">TISG</text>
+                    <rect x="115" y="60" width="96" height="4" fill="#e07a1f"/>
                 </svg>
-            </div>
-            <nav>
-                <a href="#home" data-fr="Accueil" data-ar="الرئيسية" data-en="Home">Accueil</a>
-                <a href="#services" data-fr="Services" data-ar="الخدمات" data-en="Services">Services</a>
-                <a href="#about" data-fr="À Propos" data-ar="من نحن" data-en="About">À Propos</a>
-                <a href="#contact" data-fr="Contact" data-ar="اتصل بنا" data-en="Contact">Contact</a>
-                <div class="lang-switcher">
-                    <button class="lang-btn active" onclick="setLang('fr')">FR</button>
-                    <button class="lang-btn" onclick="setLang('ar')">عربي</button>
-                    <button class="lang-btn" onclick="setLang('en')">EN</button>
+            </a>
+            <nav class="nav" aria-label="Navigation">
+                <ul class="nav-links">
+                    <li><a href="#home" data-fr="Accueil" data-ar="الرئيسية" data-en="Home">Accueil</a></li>
+                    <li><a href="#services" data-fr="Services" data-ar="الخدمات" data-en="Services">Services</a></li>
+                    <li><a href="#about" data-fr="À Propos" data-ar="من نحن" data-en="About">À Propos</a></li>
+                    <li><a href="#contact" data-fr="Contact" data-ar="اتصل بنا" data-en="Contact">Contact</a></li>
+                </ul>
+                <div class="lang-switcher" role="group" aria-label="Langue / اللغة / Language">
+                    <button type="button" class="lang-btn active" data-lang="fr" lang="fr" aria-pressed="true">FR</button>
+                    <button type="button" class="lang-btn" data-lang="ar" lang="ar" aria-pressed="false">عربي</button>
+                    <button type="button" class="lang-btn" data-lang="en" lang="en" aria-pressed="false">EN</button>
                 </div>
             </nav>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h1 data-fr="Solutions d'Ingénierie & Technologie" data-ar="حلول الهندسة والتكنولوجيا" data-en="Engineering & Technology Solutions">Solutions d'Ingénierie & Technologie</h1>
-            <p data-fr="Votre partenaire de confiance en Engineering, BTP, Télécommunications et Services Informatiques depuis 2017" data-ar="شريكك الموثوق في الهندسة والبناء والاتصالات وخدمات تكنولوجيا المعلومات منذ 2017" data-en="Your trusted partner in Engineering, Construction, Telecommunications and IT Services since 2017">Votre partenaire de confiance en Engineering, BTP, Télécommunications et Services Informatiques depuis 2017</p>
-            <a href="#contact" class="hero-btn" data-fr="Contactez-nous" data-ar="اتصل بنا" data-en="Contact Us">Contactez-nous</a>
-            <div class="stats">
-                <div class="stat-item">
-                    <div class="stat-number">8+</div>
-                    <div class="stat-label" data-fr="Années d'Expérience" data-ar="سنوات الخبرة" data-en="Years Experience">Années d'Expérience</div>
+    <main id="main">
+        <!-- Hero -->
+        <section class="hero" id="home">
+            <div class="wrap">
+                <p class="eyebrow reveal">ETS TISG · Nouakchott</p>
+                <h1 class="reveal" data-fr="Solutions d'Ingénierie & Technologie" data-ar="حلول الهندسة والتكنولوجيا" data-en="Engineering & Technology Solutions">Solutions d'Ingénierie & Technologie</h1>
+                <p class="hero-lead reveal" data-fr="Votre partenaire de confiance en Engineering, BTP, Télécommunications et Services Informatiques depuis 2017" data-ar="شريكك الموثوق في الهندسة والبناء والاتصالات وخدمات تكنولوجيا المعلومات منذ 2017" data-en="Your trusted partner in Engineering, Construction, Telecommunications and IT Services since 2017">Votre partenaire de confiance en Engineering, BTP, Télécommunications et Services Informatiques depuis 2017</p>
+                <div class="hero-actions reveal">
+                    <a href="#contact" class="btn"><span data-fr="Contactez-nous" data-ar="اتصل بنا" data-en="Contact Us">Contactez-nous</span><span class="arrow" aria-hidden="true">→</span></a>
+                    <a href="tel:+22234384800" class="hero-phone">+222 34 38 48 00</a>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label" data-fr="Projets Réalisés" data-ar="مشاريع منجزة" data-en="Projects Completed">Projets Réalisés</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">50+</div>
-                    <div class="stat-label" data-fr="Clients Satisfaits" data-ar="عملاء راضون" data-en="Happy Clients">Clients Satisfaits</div>
+                <div class="stats reveal">
+                    <div class="stat-item">
+                        <div class="stat-number">8+</div>
+                        <div class="stat-label" data-fr="Années d'Expérience" data-ar="سنوات الخبرة" data-en="Years Experience">Années d'Expérience</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100+</div>
+                        <div class="stat-label" data-fr="Projets Réalisés" data-ar="مشاريع منجزة" data-en="Projects Completed">Projets Réalisés</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label" data-fr="Clients Satisfaits" data-ar="عملاء راضون" data-en="Happy Clients">Clients Satisfaits</div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section class="services" id="services">
-        <div class="section-title">
-            <h2 data-fr="Nos Services" data-ar="خدماتنا" data-en="Our Services">Nos Services</h2>
-            <p data-fr="Des solutions complètes pour répondre à tous vos besoins" data-ar="حلول شاملة لتلبية جميع احتياجاتكم" data-en="Complete solutions to meet all your needs">Des solutions complètes pour répondre à tous vos besoins</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        <!-- Services -->
+        <section class="block services" id="services">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="section-index">01</span>
+                    <h2 data-fr="Nos Services" data-ar="خدماتنا" data-en="Our Services">Nos Services</h2>
+                    <p data-fr="Des solutions complètes pour répondre à tous vos besoins" data-ar="حلول شاملة لتلبية جميع احتياجاتكم" data-en="Complete solutions to meet all your needs">Des solutions complètes pour répondre à tous vos besoins</p>
                 </div>
-                <h3 data-fr="Engineering" data-ar="الهندسة" data-en="Engineering">Engineering</h3>
-                <p data-fr="Conception, études techniques et réalisation de projets d'ingénierie complexes" data-ar="تصميم ودراسات تقنية وتنفيذ مشاريع هندسية معقدة" data-en="Design, technical studies and execution of complex engineering projects">Conception, études techniques et réalisation de projets d'ingénierie complexes</p>
+                <ul class="services-grid">
+                    <li class="service reveal">
+                        <div class="service-top"><span class="service-num">01</span><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 3 7.5 12 12l9-4.5L12 3Z"/><path d="m3 12 9 4.5 9-4.5"/><path d="m3 16.5 9 4.5 9-4.5"/></svg></span></div>
+                        <h3 data-fr="Engineering" data-ar="الهندسة" data-en="Engineering">Engineering</h3>
+                        <p data-fr="Conception, études techniques et réalisation de projets d'ingénierie complexes" data-ar="تصميم ودراسات تقنية وتنفيذ مشاريع هندسية معقدة" data-en="Design, technical studies and execution of complex engineering projects">Conception, études techniques et réalisation de projets d'ingénierie complexes</p>
+                    </li>
+                    <li class="service reveal">
+                        <div class="service-top"><span class="service-num">02</span><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M3 21h18"/><path d="M5 21V10l7-5 7 5v11"/><path d="M9 21v-6h6v6"/></svg></span></div>
+                        <h3 data-fr="BTP" data-ar="البناء والأشغال العمومية" data-en="Construction">BTP</h3>
+                        <p data-fr="Bâtiment et Travaux Publics - Construction, rénovation et infrastructure" data-ar="البناء والأشغال العمومية - التشييد والتجديد والبنية التحتية" data-en="Building and Public Works - Construction, renovation and infrastructure">Bâtiment et Travaux Publics - Construction, rénovation et infrastructure</p>
+                    </li>
+                    <li class="service reveal">
+                        <div class="service-top"><span class="service-num">03</span><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 21V11"/><path d="m8 21 4-10 4 10"/><circle cx="12" cy="9" r="2"/><path d="M7.8 4.8a6 6 0 0 0 0 8.4"/><path d="M16.2 4.8a6 6 0 0 1 0 8.4"/></svg></span></div>
+                        <h3 data-fr="Télécommunications" data-ar="الاتصالات" data-en="Telecommunications">Télécommunications</h3>
+                        <p data-fr="Installation et maintenance de réseaux de télécommunications" data-ar="تركيب وصيانة شبكات الاتصالات" data-en="Installation and maintenance of telecommunications networks">Installation et maintenance de réseaux de télécommunications</p>
+                    </li>
+                    <li class="service reveal">
+                        <div class="service-top"><span class="service-num">04</span><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="12" rx="1.5"/><path d="M8 20h8"/><path d="M12 16v4"/><path d="m10 8-2 2 2 2"/><path d="m14 8 2 2-2 2"/></svg></span></div>
+                        <h3 data-fr="Informatique" data-ar="تكنولوجيا المعلومات" data-en="IT Services">Informatique</h3>
+                        <p data-fr="Solutions informatiques, développement logiciel et infrastructure IT" data-ar="حلول تكنولوجيا المعلومات وتطوير البرمجيات والبنية التحتية" data-en="IT solutions, software development and IT infrastructure">Solutions informatiques, développement logiciel et infrastructure IT</p>
+                    </li>
+                    <li class="service reveal">
+                        <div class="service-top"><span class="service-num">05</span><span class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M9 7V5a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v2"/><path d="M3 12h18"/></svg></span></div>
+                        <h3 data-fr="Prestation de Services" data-ar="خدمات متنوعة" data-en="General Services">Prestation de Services</h3>
+                        <p data-fr="Services généraux et prestations sur mesure pour entreprises" data-ar="خدمات عامة وحلول مخصصة للشركات" data-en="General services and customized solutions for businesses">Services généraux et prestations sur mesure pour entreprises</p>
+                    </li>
+                </ul>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24"><path d="M3 21h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18v-2H3v2zm0-4h18V7H3v2zm0-6v2h18V3H3z"/></svg>
-                </div>
-                <h3 data-fr="BTP" data-ar="البناء والأشغال العمومية" data-en="Construction">BTP</h3>
-                <p data-fr="Bâtiment et Travaux Publics - Construction, rénovation et infrastructure" data-ar="البناء والأشغال العمومية - التشييد والتجديد والبنية التحتية" data-en="Building and Public Works - Construction, renovation and infrastructure">Bâtiment et Travaux Publics - Construction, rénovation et infrastructure</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                </div>
-                <h3 data-fr="Télécommunications" data-ar="الاتصالات" data-en="Telecommunications">Télécommunications</h3>
-                <p data-fr="Installation et maintenance de réseaux de télécommunications" data-ar="تركيب وصيانة شبكات الاتصالات" data-en="Installation and maintenance of telecommunications networks">Installation et maintenance de réseaux de télécommunications</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
-                </div>
-                <h3 data-fr="Informatique" data-ar="تكنولوجيا المعلومات" data-en="IT Services">Informatique</h3>
-                <p data-fr="Solutions informatiques, développement logiciel et infrastructure IT" data-ar="حلول تكنولوجيا المعلومات وتطوير البرمجيات والبنية التحتية" data-en="IT solutions, software development and IT infrastructure">Solutions informatiques, développement logiciel et infrastructure IT</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
-                </div>
-                <h3 data-fr="Prestation de Services" data-ar="خدمات متنوعة" data-en="General Services">Prestation de Services</h3>
-                <p data-fr="Services généraux et prestations sur mesure pour entreprises" data-ar="خدمات عامة وحلول مخصصة للشركات" data-en="General services and customized solutions for businesses">Services généraux et prestations sur mesure pour entreprises</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About Section -->
-    <section class="about" id="about">
-        <div class="section-title">
-            <h2 data-fr="À Propos de Nous" data-ar="من نحن" data-en="About Us">À Propos de Nous</h2>
-            <p data-fr="Excellence et engagement depuis 2017" data-ar="التميز والالتزام منذ 2017" data-en="Excellence and commitment since 2017">Excellence et engagement depuis 2017</p>
-        </div>
-        <div class="about-container">
-            <div class="about-text">
-                <h3 data-fr="Notre Mission" data-ar="مهمتنا" data-en="Our Mission">Notre Mission</h3>
-                <p data-fr="Depuis 2017, ETS TISG s'engage à fournir des solutions innovantes et de haute qualité dans les domaines de l'ingénierie, du BTP, des télécommunications et de l'informatique. Nous accompagnons nos clients dans la réalisation de leurs projets les plus ambitieux en Mauritanie et dans la région." data-ar="منذ عام 2017، تلتزم ETS TISG بتقديم حلول مبتكرة وعالية الجودة في مجالات الهندسة والبناء والأشغال العمومية والاتصالات وتكنولوجيا المعلومات. نرافق عملاءنا في تحقيق مشاريعهم الأكثر طموحًا في موريتانيا والمنطقة." data-en="Since 2017, ETS TISG is committed to providing innovative and high-quality solutions in engineering, construction, telecommunications and IT. We support our clients in achieving their most ambitious projects in Mauritania and the region.">Depuis 2017, ETS TISG s'engage à fournir des solutions innovantes et de haute qualité dans les domaines de l'ingénierie, du BTP, des télécommunications et de l'informatique. Nous accompagnons nos clients dans la réalisation de leurs projets les plus ambitieux en Mauritanie et dans la région.</p>
-                <h3 data-fr="Nos Valeurs" data-ar="قيمنا" data-en="Our Values">Nos Valeurs</h3>
-                <div class="values-grid">
-                    <div class="value-item">
-                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-                        <span data-fr="Qualité" data-ar="الجودة" data-en="Quality">Qualité</span>
+        <!-- About -->
+        <section class="block about" id="about">
+            <div class="wrap">
+                <div class="section-head reveal">
+                    <span class="section-index">02</span>
+                    <h2 data-fr="À Propos de Nous" data-ar="من نحن" data-en="About Us">À Propos de Nous</h2>
+                    <p data-fr="Excellence et engagement depuis 2017" data-ar="التميز والالتزام منذ 2017" data-en="Excellence and commitment since 2017">Excellence et engagement depuis 2017</p>
+                </div>
+                <div class="about-grid">
+                    <div class="reveal">
+                        <h3 data-fr="Notre Mission" data-ar="مهمتنا" data-en="Our Mission">Notre Mission</h3>
+                        <p class="mission" data-fr="Depuis 2017, ETS TISG s'engage à fournir des solutions innovantes et de haute qualité dans les domaines de l'ingénierie, du BTP, des télécommunications et de l'informatique. Nous accompagnons nos clients dans la réalisation de leurs projets les plus ambitieux en Mauritanie et dans la région." data-ar="منذ عام 2017، تلتزم ETS TISG بتقديم حلول مبتكرة وعالية الجودة في مجالات الهندسة والبناء والأشغال العمومية والاتصالات وتكنولوجيا المعلومات. نرافق عملاءنا في تحقيق مشاريعهم الأكثر طموحًا في موريتانيا والمنطقة." data-en="Since 2017, ETS TISG is committed to providing innovative and high-quality solutions in engineering, construction, telecommunications and IT. We support our clients in achieving their most ambitious projects in Mauritania and the region.">Depuis 2017, ETS TISG s'engage à fournir des solutions innovantes et de haute qualité dans les domaines de l'ingénierie, du BTP, des télécommunications et de l'informatique. Nous accompagnons nos clients dans la réalisation de leurs projets les plus ambitieux en Mauritanie et dans la région.</p>
+                        <div class="since"><span class="since-year">2017</span><span class="since-label">Nouakchott, Mauritanie</span></div>
                     </div>
-                    <div class="value-item">
-                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-                        <span data-fr="Innovation" data-ar="الابتكار" data-en="Innovation">Innovation</span>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-                        <span data-fr="Intégrité" data-ar="النزاهة" data-en="Integrity">Intégrité</span>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-                        <span data-fr="Fiabilité" data-ar="الموثوقية" data-en="Reliability">Fiabilité</span>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-                        <span data-fr="Satisfaction Client" data-ar="رضا العملاء" data-en="Customer Satisfaction">Satisfaction Client</span>
-                    </div>
-                    <div class="value-item">
-                        <div class="value-icon"><svg viewBox="0 0 24 24"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></div>
-                        <span data-fr="Professionnalisme" data-ar="الاحترافية" data-en="Professionalism">Professionnalisme</span>
+                    <div class="reveal">
+                        <h3 data-fr="Nos Valeurs" data-ar="قيمنا" data-en="Our Values">Nos Valeurs</h3>
+                        <ul class="values">
+                            <li class="value-item"><span class="value-num">01</span><span data-fr="Qualité" data-ar="الجودة" data-en="Quality">Qualité</span></li>
+                            <li class="value-item"><span class="value-num">02</span><span data-fr="Innovation" data-ar="الابتكار" data-en="Innovation">Innovation</span></li>
+                            <li class="value-item"><span class="value-num">03</span><span data-fr="Intégrité" data-ar="النزاهة" data-en="Integrity">Intégrité</span></li>
+                            <li class="value-item"><span class="value-num">04</span><span data-fr="Fiabilité" data-ar="الموثوقية" data-en="Reliability">Fiabilité</span></li>
+                            <li class="value-item"><span class="value-num">05</span><span data-fr="Satisfaction Client" data-ar="رضا العملاء" data-en="Customer Satisfaction">Satisfaction Client</span></li>
+                            <li class="value-item"><span class="value-num">06</span><span data-fr="Professionnalisme" data-ar="الاحترافية" data-en="Professionalism">Professionnalisme</span></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <div class="about-image">
-                <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
-                    <rect fill="#f8f9fa" width="400" height="400" rx="20"/>
-                    <g transform="translate(50, 50)">
-                        <rect x="50" y="100" width="200" height="180" fill="#1a5276" rx="5"/>
-                        <rect x="70" y="120" width="40" height="40" fill="#ffffff" rx="3"/>
-                        <rect x="130" y="120" width="40" height="40" fill="#ffffff" rx="3"/>
-                        <rect x="190" y="120" width="40" height="40" fill="#ffffff" rx="3"/>
-                        <rect x="70" y="180" width="40" height="40" fill="#ffffff" rx="3"/>
-                        <rect x="130" y="180" width="40" height="40" fill="#ffffff" rx="3"/>
-                        <rect x="190" y="180" width="40" height="40" fill="#ffffff" rx="3"/>
-                        <rect x="120" y="240" width="60" height="40" fill="#e67e22" rx="3"/>
-                        <polygon points="150,20 50,100 250,100" fill="#2e86ab"/>
-                        <rect x="140" y="40" width="20" height="40" fill="#e67e22"/>
-                        <circle cx="150" cy="35" r="8" fill="#f39c12"/>
-                    </g>
-                </svg>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section class="contact" id="contact">
-        <div class="section-title">
-            <h2 data-fr="Contactez-Nous" data-ar="اتصل بنا" data-en="Contact Us">Contactez-Nous</h2>
-            <p data-fr="Nous sommes à votre écoute pour tous vos projets" data-ar="نحن في خدمتكم لجميع مشاريعكم" data-en="We are here for all your projects">Nous sommes à votre écoute pour tous vos projets</p>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        <!-- Contact + footer -->
+        <div class="closing">
+            <section class="contact" id="contact">
+                <div class="wrap">
+                    <div class="section-head reveal">
+                        <span class="section-index">03</span>
+                        <h2 data-fr="Contactez-Nous" data-ar="اتصل بنا" data-en="Contact Us">Contactez-Nous</h2>
+                        <p data-fr="Nous sommes à votre écoute pour tous vos projets" data-ar="نحن في خدمتكم لجميع مشاريعكم" data-en="We are here for all your projects">Nous sommes à votre écoute pour tous vos projets</p>
+                    </div>
+                    <div class="contact-grid reveal">
+                        <div class="contact-item">
+                            <h4 data-fr="Adresse" data-ar="العنوان" data-en="Address">Adresse</h4>
+                            <p>Ilot C, Nouakchott<br>Mauritanie</p>
+                        </div>
+                        <div class="contact-item">
+                            <h4 data-fr="Téléphone" data-ar="الهاتف" data-en="Phone">Téléphone</h4>
+                            <a href="tel:+22234384800">+222 34 38 48 00</a>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Email</h4>
+                            <a href="mailto:contact@ets-tisg.com">contact@ets-tisg.com</a>
+                        </div>
+                    </div>
                 </div>
-                <h4 data-fr="Adresse" data-ar="العنوان" data-en="Address">Adresse</h4>
-                <p>Ilot C, Nouakchott<br>Mauritanie</p>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-                </div>
-                <h4 data-fr="Téléphone" data-ar="الهاتف" data-en="Phone">Téléphone</h4>
-                <a href="tel:+22234384800">+222 34 38 48 00</a>
-            </div>
-            <div class="contact-item">
-                <div class="contact-icon">
-                    <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-                </div>
-                <h4>Email</h4>
-                <a href="mailto:contact@ets-tisg.com">contact@ets-tisg.com</a>
-            </div>
-        </div>
-    </section>
+            </section>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2017 - 2025 ETS TISG. <span data-fr="Tous droits réservés." data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">Tous droits réservés.</span></p>
-    </footer>
+            <footer>
+                <div class="wrap footer-row">
+                    <p>&copy; 2017 – <span id="year">2026</span> ETS TISG. <span data-fr="Tous droits réservés." data-ar="جميع الحقوق محفوظة." data-en="All rights reserved.">Tous droits réservés.</span></p>
+                    <ul class="footer-links">
+                        <li><a href="privacy.html" data-fr="Confidentialité" data-ar="الخصوصية" data-en="Privacy">Confidentialité</a></li>
+                        <li><a href="terms.html" data-fr="Conditions" data-ar="الشروط" data-en="Terms">Conditions</a></li>
+                        <li><a href="account-deletion.html" data-fr="Suppression de compte" data-ar="حذف الحساب" data-en="Account deletion">Suppression de compte</a></li>
+                    </ul>
+                </div>
+            </footer>
+        </div>
+    </main>
 
-    <!-- Language Switcher Script -->
     <script>
-        function setLang(lang) {
-            // Update body direction for Arabic
-            document.body.classList.toggle('rtl', lang === 'ar');
-            document.documentElement.lang = lang === 'ar' ? 'ar' : lang === 'en' ? 'en' : 'fr';
+        (function () {
+            var root = document.documentElement;
+            root.classList.add('js');
 
-            // Update all translatable elements
-            document.querySelectorAll('[data-' + lang + ']').forEach(el => {
-                el.textContent = el.getAttribute('data-' + lang);
+            function setLang(lang) {
+                if (['fr', 'ar', 'en'].indexOf(lang) === -1) lang = 'fr';
+                root.lang = lang;
+                root.dir = lang === 'ar' ? 'rtl' : 'ltr';
+                document.querySelectorAll('[data-' + lang + ']').forEach(function (el) {
+                    el.textContent = el.getAttribute('data-' + lang);
+                });
+                document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                    var on = btn.getAttribute('data-lang') === lang;
+                    btn.classList.toggle('active', on);
+                    btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+                });
+                try { localStorage.setItem('tisg-lang', lang); } catch (e) {}
+            }
+
+            document.querySelectorAll('.lang-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () { setLang(btn.getAttribute('data-lang')); });
             });
 
-            // Update active button
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-        }
+            // ?lang=ar|en|fr in the link wins (shareable), then the visitor's last choice
+            var saved = null;
+            var m = /[?&]lang=(fr|ar|en)\b/.exec(location.search);
+            if (m) { saved = m[1]; }
+            else { try { saved = localStorage.getItem('tisg-lang'); } catch (e) {} }
+            if (saved && saved !== 'fr') setLang(saved);
 
-        // Smooth scroll for navigation
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
+            document.getElementById('year').textContent = new Date().getFullYear();
+
+            // Active nav link follows the section in view
+            var links = document.querySelectorAll('.nav-links a');
+            var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if ('IntersectionObserver' in window) {
+                var spy = new IntersectionObserver(function (entries) {
+                    entries.forEach(function (entry) {
+                        if (!entry.isIntersecting) return;
+                        links.forEach(function (a) {
+                            a.classList.toggle('is-active', a.getAttribute('href') === '#' + entry.target.id);
+                        });
                     });
+                }, { rootMargin: '-45% 0px -50% 0px' });
+                document.querySelectorAll('main section[id]').forEach(function (s) { spy.observe(s); });
+
+                if (!reduce) {
+                    var io = new IntersectionObserver(function (entries) {
+                        entries.forEach(function (entry) {
+                            if (entry.isIntersecting) { entry.target.classList.add('in'); io.unobserve(entry.target); }
+                        });
+                    }, { rootMargin: '0px 0px -8% 0px' });
+                    document.querySelectorAll('.reveal').forEach(function (el, i) {
+                        el.style.transitionDelay = (Math.min(i % 5, 4) * 60) + 'ms';
+                        io.observe(el);
+                    });
+                } else {
+                    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
                 }
-            });
-        });
+            } else {
+                document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+            }
+        })();
     </script>
 </body>
 </html>
